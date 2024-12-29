@@ -4,6 +4,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const Item = require('../models/Item');
 const router = express.Router();
+const MONGO_URI = process.env.MONGO_URI
 
 router.post('/', async (req, res) => {
   try {
@@ -16,6 +17,8 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  console.log(MONGO_URI)
+
   try {
     const items = await Item.find();
     res.json(items);

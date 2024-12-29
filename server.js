@@ -4,21 +4,19 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/mydb";
 const itemsRoute = require('./routes/items');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Routes
 app.use('/api/items', itemsRoute);
 
-// Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/mydb", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
