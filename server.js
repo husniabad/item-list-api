@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use('/api/items', itemsRoute);
 
 mongoose
-  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect("mongodb+srv://1ms19cs052:oDEctStNRWsJElgi@cluster0.5uwpe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
